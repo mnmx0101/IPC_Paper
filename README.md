@@ -6,7 +6,7 @@
 This repository contains the code and data necessary to replicate the analysis and generate the figures and tables presented in the paper: **“Global Assessment of Acutely Hungry Misses One in Four.”** The analysis covers the replication of the 'bunching analysis' and other statistical methods used in the paper.
 
 ### Data Sources
-We utilized multiple data sources for the analysis. Due to privacy restrictions, some of the underlying datasets cannot be shared publicly. Below is a summary of the data used, including links to publicly available datasets and notes on restricted data:
+We used multiple data sources for the analysis. Due to privacy restrictions, some of the underlying datasets cannot be shared publicly. Below is a summary of the data used, including links to publicly available datasets and notes on restricted data:
 
 | **Filename**                                  | **Description**                                                           | **Link**                                                                                               | **Note**                         |
 |------------------------------------------------|---------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|----------------------------------|
