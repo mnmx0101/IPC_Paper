@@ -24,7 +24,7 @@ We used multiple data sources for the analysis. Due to privacy restrictions, som
 ### Replication Process
 
 The main analysis focuses on a **bunching analysis**, where we use simulation and polynomial fitting to examine the effects of excluding certain data points. The code provided in `bunching_paper_replication_code.ipynb` allows replication of this process. Specifically, the analysis:
-- Performs **500 simulations** (or more) on the dataset.
+- Performs **p>=500 simulations** (or more) on the dataset.
 - Fits a **nth-degree polynomial** to binned data in each simulation.
 - Excludes specific data points or thresholds in different rounds to assess their impact on the polynomial fit and the data distribution.
 
@@ -39,4 +39,5 @@ We also employ the Barrett and Donald (BD) test to examine first-order stochasti
 Due to privacy restrictions, it is **not possible to fully replicate** certain figures and tables that rely on the restricted datasets (`ipc_sample_c.csv` and `afg_df_hfa.csv`). Specifically, **Figures 3, 4, 5 in the main text**, as well as **Table A1, Figures A6, A8, A9, A10, A11, A14, A15, and Table A4** in the Supplementary Information (SI), cannot be replicated. However, the entire code and visualizations are shared in the scripts to support reproducibility where data is accessible.
 
 For more details, please refer to the code scripts and documentation provided in the repository.
-Contact: ck24@illinois.edu (Chungmann Kim)
+
+For any inquiries regarding the code or data, please contact Chungmann Kim at ck24@illinois.edu.
