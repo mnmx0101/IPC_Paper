@@ -23,15 +23,20 @@ We used multiple data sources for the analysis. Due to privacy restrictions, som
 
 ### Replication Process
 
-The main analysis focuses on a **bunching analysis**, where we use simulation and polynomial fitting to examine the effects of excluding certain data points. The code provided in `bunching_paper_replication_code.ipynb` allows replication of this process. Specifically, the analysis:
-- Performs **p>=500 simulations** (or more) on the dataset.
-- Fits a **nth-degree polynomial** to binned data in each simulation.
-- Excludes specific data points or thresholds in different rounds to assess their impact on the polynomial fit and the data distribution.
+The main analysis focuses on a **bunching diagnostic**, where bootstrap resampling and polynomial fitting are used to examine behavioral clustering around IPC thresholds. The core logic is implemented in the `BunchingAnalysis` class, provided in the `bunching_analysis.py` module.
 
-The code computes the mean and standard deviation of the polynomial coefficients across simulations, which helps measure the variability when different data points are excluded. Three scenarios are compared:
-1. Excluding specific midpoints.
-2. Simulations without exclusions.
-3. Excluding data around a specific threshold.
+To replicate the analysis, run the notebook `bunching_paper_replication_code_RR.ipynb`, which performs the following:
+
+- Runs **≥500 bootstrap iterations** per scenario on the target data series.
+- Fits an **n-th degree polynomial** to the binned frequency distribution in each bootstrap sample.
+- Applies different exclusion strategies to assess their impact on the estimated densities.
+
+The `BunchingAnalysis` class supports three main scenarios:
+1. **Scenario 1** – Sequentially excludes specific bin midpoints (e.g., 15%, 20%, 25%, 30%) to evaluate localized bunching.
+2. **Scenario 2** – Full-sample bootstrap without exclusions.
+3. **Scenario 3** – Excludes ±1 binwidth around a key threshold (e.g., 20%).
+
+Each scenario returns a matrix of predicted or estimated densities, along with their **mean** and **standard deviation** (interpretable as bootstrapped standard errors), enabling robust comparison and visualization of bunching effects.
 
 We also employ the Barrett and Donald (BD) test to examine first-order stochastic dominance  between consensus-based and counterfactual 3+ population distributions (Barrett and Donald 2003)[link](https://onlinelibrary.wiley.com/doi/abs/10.1111/1468-0262.00390). This non-parametric test method allows for the assessment of stochastic dominance without the need to make specific distributional assumptions (Lee and Whang 2023)[link](https://github.com/lee-kyungho/pysdtest). We first calculate the empirical cumulative distribution functions (ECDFs for the different distributions). The test statistic is then derived as the supremum of the absolute difference between these ECDFs across the entire support of the distributions. Critical values for the test are estimated using bootstrap resampling techniques, where pseudo-samples are generated from the pooled original samples to construct the empirical distribution of the test statistic under the null hypothesis. The null hypothesis of no stochastic dominance is rejected if the observed test statistic exceeds the critical value, indicating that one distribution first-order stochastically dominates the other.
 
