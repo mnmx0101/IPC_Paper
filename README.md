@@ -25,7 +25,7 @@ We used multiple data sources for the analysis. Due to privacy restrictions, som
 
 The main analysis focuses on a **bunching diagnostic**, where bootstrap resampling and polynomial fitting are used to examine behavioral clustering around IPC thresholds. The core logic is implemented in the `BunchingAnalysis` class, provided in the `bunching_analysis.py` module.
 
-To replicate the analysis, run the notebook `bunching_paper_replication_code_RR.ipynb`, which performs the following:
+To replicate the bunching analysis, run the notebook `bunching_paper_replication_code_RR.ipynb`, which performs the following for a set of analyses:
 
 - Runs **≥500 bootstrap iterations** per scenario on the target data series.
 - Fits an **n-th degree polynomial** to the binned frequency distribution in each bootstrap sample.
