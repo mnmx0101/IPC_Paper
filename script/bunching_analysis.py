@@ -1,10 +1,12 @@
-# Data manipulation and numerical libraries
+## Load Libraries
+
+# Data manipulation
 import pandas as pd
 import numpy as np
 import json
 import csv
 
-# Visualization libraries
+# Visualization
 import matplotlib.pyplot as plt
 import seaborn as sns
 import matplotlib.patches as mpatches
@@ -15,10 +17,10 @@ from matplotlib.cm import viridis
 from matplotlib.colors import Normalize
 from matplotlib.colors import to_hex
 
-# Geospatial data handling
+# Geospatial data
 import geopandas as gpd
 
-# Web requests and file handling
+# Web requests
 import requests
 import glob
 import os
@@ -30,14 +32,10 @@ from scipy.stats import norm, ks_2samp
 import statsmodels.api as sm
 from scipy.stats import gaussian_kde
 
-# Ignore warning
-import warnings
-warnings.filterwarnings("ignore")
 
 class BunchingAnalysis:
     '''
-    Custom class to analyze bunching behavior in food insecurity data near key thresholds (e.g., 20%), 
-    inspired by bunching diagnostics like Chetty et al. (2011) to visualize behavioral clustering.
+    BunchingAnalysis is a custom class designed to detect behavioral clustering in IPC outcomes (e.g., population estimates (%) near key thresholds (e.g., 20%), inspired by the empirical bunching framework of Chetty et al. (2011). 
 
     - Bins the input series using fixed bin width (e.g., 5%) and fits smoothed polynomial curves to frequency counts.
     - Estimates expected densities under three exclusion scenarios:
@@ -62,15 +60,14 @@ class BunchingAnalysis:
         
     def add_bin_midpoint_column(self, df, var_name):
         """
-        Adds a 'bin_midpoint' column to the given DataFrame using the same binning
-        logic as the simulator.
+        It adds a 'bin_midpoint' column to the given DataFrame using the 5% binning logic.
 
         Parameters:
-        - df (pd.DataFrame): The DataFrame to update.
+        - df: The DataFrame to update.
         - var_name (str): Column in df to apply binning on.
 
         Returns:
-        - pd.DataFrame: DataFrame with 'bin_midpoint' column added
+        - df: DataFrame with 'bin_midpoint' column added
         """
         bin_midpoints_shifted = (self.midpoints - self.binwidth / 2).round(3)
         df = df.copy()
